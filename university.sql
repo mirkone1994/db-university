@@ -38,3 +38,9 @@ SELECT COUNT(`name`) FROM `departments`
 --8 Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
 SELECT COUNT(*) FROM `teachers`
 WHERE `phone` IS NULL
+--1(join)
+SELECT `students`.`name`, `students`.`surname`
+FROM `students`
+JOIN `degrees`
+ON `degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
