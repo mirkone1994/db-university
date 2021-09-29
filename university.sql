@@ -6,6 +6,14 @@ GROUP BY YEAR(`enrolment_date`)
 SELECT COUNT(`id`), `office_address`
 FROM `teachers`
 GROUP BY `office_address`
+--3(group by) Calcolare la media dei voti di ogni appello d'esame
+SELECT ROUND(AVG(`vote`), 2), `exam_id`
+FROM `exam_student`
+GROUP BY `exam_id`
+--4(group by) Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT COUNT(*), `department_id`
+FROM `degrees`
+GROUP BY `department_id`
 --1(select) Selezionare tutti gli studenti nati nel 1990 (160)
 SELECT * FROM `students`
 WHERE YEAR(`date_of_birth`) = 1990  
@@ -13,8 +21,9 @@ WHERE YEAR(`date_of_birth`) = 1990
 SELECT * FROM `courses`
 WHERE `cfu` > 10
 --3 (select) Selezionare tutti gli studenti che hanno più di 30 anni
-SELECT * FROM `students`
-WHERE YEAR(`date_of_birth`) > 1991
+SELECT * FROM  `students` 
+WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) >= 30  
+ORDER BY `students`.`date_of_birth` DESC
 --4(select) Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 SELECT * FROM `courses`  
 WHERE `year`= 1 AND `period` = 'I semestre'
